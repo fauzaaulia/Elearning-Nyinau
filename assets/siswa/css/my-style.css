@@ -1,0 +1,35 @@
+#background-landing{
+   background-image: url("https://images.pexels.com/photos/159621/open-book-library-education-read-159621.jpeg?cs=srgb&dl=books-bookshelf-education-159621.jpg&fm=jpg");
+   height: 500px;
+   background-position-y: 50%;
+   background-size: 100%;
+}
+
+#bg-fitur1{
+   background-image: url("https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+   height: 400px;
+   background-position-y: 50%;
+   background-size: 100%;
+}
+
+#bg-fitur2{
+   background-image: url("https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+   height: 400px;
+   background-position-y: 50%;
+   background-size: 100%;
+}
+
+#bg-fitur3{
+   background-image: url("https://images.pexels.com/photos/374016/pexels-photo-374016.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+   height: 400px;
+   background-position-y: 50%;
+   background-size: 100%;
+}
+
+.bg-pinky{
+   background-color: #F9D9EB;
+}
+
+.card{
+   border-radius: 20px;
+}
