@@ -3,6 +3,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Guru extends CI_Controller
 {
+   public function __construct()
+   {
+      parent::__construct();
+      is_logged_in();
+      $this->load->model('User_model');
+   }
 
    public function index()
    {
@@ -12,7 +18,7 @@ class Guru extends CI_Controller
       $data['dec'] = 'Guru';
 
       $this->load->view('templates/adm-header', $data);
-      $this->load->view('templates/gr-sidebar', $data);
+      $this->load->view('templates/adm-sidebar', $data);
       $this->load->view('guru/dashboard');
       $this->load->view('templates/adm-footer');
    }
