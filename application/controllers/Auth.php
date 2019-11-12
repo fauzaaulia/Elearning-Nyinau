@@ -41,6 +41,7 @@ class Auth extends CI_Controller
                $data = [
                   'username' => $user['username'],
                   'role_id' => $user['role_id'],
+                  'id' => $user['id'],
                ];
                $this->session->set_userdata($data);
                if ($user['role_id'] == 1) {
@@ -107,6 +108,7 @@ class Auth extends CI_Controller
    {
       $this->session->unset_userdata('username');
       $this->session->unset_userdata('role_id');
+      $this->session->unset_userdata('id');
 
       $this->session->set_flashdata('message', '<div class="bs-component"><div class="alert alert-dismissible alert-success">You have been Logout!</div></div>');
       redirect('page');
