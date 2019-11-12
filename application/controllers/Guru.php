@@ -9,12 +9,14 @@ class Guru extends CI_Controller
       is_logged_in();
       $this->load->library('form_validation');
       $this->load->model('User_model');
+      $this->load->model('Kelas_model');
    }
 
    public function index()
    {
       $this->load->model('User_model', 'user');
       $data['user'] = $this->user->getUserByID();
+      $data['totkelas'] = $this->Kelas_model->totKelasByUser();
 
       $data['title'] = 'Dashboard';
 
@@ -68,6 +70,13 @@ class Guru extends CI_Controller
          $this->session->set_flashdata('message', '<div class="bs-component"><div class="alert alert-dismissible alert-success"><strong>Well done!</strong> You successfully add Member.</div></div>');
          redirect('guru/kelas');
       }
+   }
+
+   public function deletekelas($id)
+   {
+      $this->db->delete('kelas', ['id' => $id]);
+      $this->session->set_flashdata('message', '<div class="bs-component"><div class="alert alert-dismissible alert-success"><strong>Well done!</strong> You successfully delete Kelas.</div></div>');
+      redirect('guru/kelas');
    }
 
    public function profil()

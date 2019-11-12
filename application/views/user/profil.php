@@ -2,8 +2,8 @@
    <div class="col-md-12">
       <div class="profile">
          <div class="info"><img class="user-img" height="110px" width="110px" src="<?= base_url('assets/images/profile/') ?>default.JPG">
-            <h4>Ahmad Fauza Aulia</h4>
-            <p>FrontEnd Developer</p>
+            <h4><?= $user['name'] ?></h4>
+            <p><?= $user['role'] ?></p>
          </div>
          <div class="cover-image"></div>
       </div>
@@ -24,7 +24,6 @@
                   <div class="content">
                      <h2><a href="#"><?= $user['name'] ?></a></h2>
                      <h5>Role : <span class="badge badge-pill badge-warning"><?= $user['role'] ?></span></h5>
-                     <h5>Kode-Admin : <span class="badge badge-pill badge-warning">G-21432</span></h5>
                      <h5>Username : <span class="badge badge-pill badge-danger"><?= $user['username'] ?></span></h5>
                      <h5>E-mail : <span class="badge badge-pill badge-success"><?= $user['email'] ?></span></h5>
                      <h5>Gender : <span class="badge badge-pill badge-success">Laki-laki</span></h5>

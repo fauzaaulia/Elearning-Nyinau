@@ -1,11 +1,13 @@
 <div class="row">
    <div class="col-md-6 col-lg-3">
-      <div class="widget-small primary coloured-icon"><i class="icon fa fa-television"></i>
-         <div class="info">
-            <h4>Kelas</h4>
-            <p><b>3</b></p>
+      <a href="<?= base_url('guru/kelas') ?>">
+         <div class="widget-small primary coloured-icon"><i class="icon fa fa-television"></i>
+            <div class="info">
+               <h4>Kelas</h4>
+               <p><b><?= $totkelas['0']['total'] ?></b></p>
+            </div>
          </div>
-      </div>
+      </a>
    </div>
    <div class="col-md-6 col-lg-3">
       <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>

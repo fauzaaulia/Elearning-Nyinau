@@ -14,8 +14,9 @@ class Admin extends CI_Controller
    {
       $this->load->model('User_model', 'user');
       $data['user'] = $this->user->getUserByID();
-
       $data['users'] = $this->User_model->getDataUser();
+      $data['totguru'] = $this->User_model->getTotalGuru();
+      $data['totmurid'] = $this->User_model->getTotalMurid();
 
       $data['title'] = 'Dashboard';
 
@@ -42,7 +43,9 @@ class Admin extends CI_Controller
    public function listkelas()
    {
       $this->load->model('User_model', 'user');
+      $this->load->model('Kelas_model', 'kelas');
       $data['user'] = $this->user->getUserByID();
+      $data['kelas'] = $this->kelas->getAllKelas();
 
       $data['title'] = 'Kelas';
 
@@ -50,6 +53,13 @@ class Admin extends CI_Controller
       $this->load->view('templates/adm-sidebar', $data);
       $this->load->view('admin/kelas');
       $this->load->view('templates/adm-footer');
+   }
+
+   public function deletekelas($id)
+   {
+      $this->db->delete('kelas', ['id' => $id]);
+      $this->session->set_flashdata('message', '<div class="bs-component"><div class="alert alert-dismissible alert-success"><strong>Well done!</strong> You successfully delete Kelas.</div></div>');
+      redirect('guru/kelas');
    }
 
    public function listmurid()

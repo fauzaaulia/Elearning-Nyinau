@@ -29,7 +29,7 @@
                            <td><?= $k['point']; ?></td>
                            <td>
                               <a href="<?= base_url('guru/babmateri') ?>" role="button" class="btn btn-primary">Edit</a>
-                              <a href="<?= base_url('guru/deletemateri') ?>" class="btn btn-danger" role="button">Delete</a>
+                              <a href="<?= base_url('guru/deletekelas/') . $k['id'] ?>" class="btn btn-danger" role="button">Delete</a>
                            </td>
                         </tr>
                         <?php $i++; ?>

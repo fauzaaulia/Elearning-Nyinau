@@ -17,4 +17,14 @@ class Kelas_model extends CI_Model
                ";
       return $this->db->query($query)->result_array();
    }
+
+   public function totKelasByUser()
+   {
+      $id = $this->session->userdata('id');
+      $query = "SELECT count(*) AS total
+                  FROM kelas
+                  WHERE user_id = '$id'
+                  ";
+      return $this->db->query($query)->result_array();
+   }
 }

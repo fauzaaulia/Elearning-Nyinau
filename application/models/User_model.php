@@ -41,6 +41,14 @@ class User_model extends CI_Model
       return $this->db->query($query)->result_array();
    }
 
+   public function getTotalGuru()
+   {
+      $query = "SELECT count(*) AS total
+                  FROM user
+                  WHERE role_id = 2 ";
+      return $this->db->query($query)->result_array();
+   }
+
    public function getUserMurid()
    {
       $query = "SELECT *
@@ -49,6 +57,14 @@ class User_model extends CI_Model
                ON user.role_id = user_role.id
                WHERE user_role.id = 3
                ";
+      return $this->db->query($query)->result_array();
+   }
+
+   public function getTotalMurid()
+   {
+      $query = "SELECT count(*) AS total
+                  FROM user
+                  WHERE role_id = 3 ";
       return $this->db->query($query)->result_array();
    }
 }
