@@ -92,10 +92,12 @@ class Guru extends CI_Controller
       $this->load->view('templates/adm-footer');
    }
 
-   public function babmateri()
+   public function babmateri($id)
    {
       $this->load->model('User_model', 'user');
+      $this->load->model('Materi_model', 'materi');
       $data['user'] = $this->user->getUserByID();
+      $data['bab'] = $this->materi->getBabByID($id);
 
       $data['title'] = 'BAB MATERI';
 
@@ -105,17 +107,35 @@ class Guru extends CI_Controller
       $this->load->view('templates/adm-footer');
    }
 
-   public function addmateri()
+   public function addmateri($id)
    {
-      $this->load->model('User_model', 'user');
-      $data['user'] = $this->user->getUserByID();
+      $this->form_validation->set_rules('judul', 'Judul Materi', 'required|trim');
+      $this->form_validation->set_rules('editor1', 'Isi Materi', 'required|trim');
 
-      $data['title'] = 'MATERI';
+      if ($this->form_validation->run() == false) {
+         $this->load->model('User_model', 'user');
+         $data['user'] = $this->user->getUserByID();
+         $data['title'] = 'MATERI';
 
-      $this->load->view('templates/adm-header', $data);
-      $this->load->view('templates/adm-sidebar', $data);
-      $this->load->view('guru/addmateri');
-      $this->load->view('templates/adm-footer');
+         $this->load->view('templates/adm-header', $data);
+         $this->load->view('templates/adm-sidebar', $data);
+         $this->load->view('guru/addmateri');
+         $this->load->view('templates/adm-footer');
+      } else {
+         $data = [
+            'kelas_id' => htmlspecialchars($this->input->post('kelas_id', true)),
+            'judul' => htmlspecialchars($this->input->post('judul', true)),
+            'cover' => htmlspecialchars($this->input->post('cover', true)),
+            'isi_materi' => $this->input->post('editor1'),
+            'is_active' => 1,
+            'date_create' => time()
+         ];
+
+         $id = $this->input->post('kelas_id');
+         $this->db->insert('materi_kelas', $data);
+         $this->session->set_flashdata('message', '<div class="bs-component"><div class="alert alert-dismissible alert-success"><strong>Well done!</strong> Berhasil menambahkan materi.</div></div>');
+         redirect('guru/babmateri/' . $id);
+      }
    }
 
    public function blank()
@@ -129,5 +149,12 @@ class Guru extends CI_Controller
       $this->load->view('templates/adm-sidebar', $data);
       $this->load->view('guru/blank');
       $this->load->view('templates/adm-footer');
+   }
+
+   public function deletemateri($id, $id2)
+   {
+      $this->db->delete('materi_kelas', ['id' => $id2]);
+      $this->session->set_flashdata('message', '<div class="bs-component"><div class="alert alert-dismissible alert-success"><strong>Well done!</strong> You successfully delete Materi.</div></div>');
+      redirect('guru/babmateri/' . $id);
    }
 }
