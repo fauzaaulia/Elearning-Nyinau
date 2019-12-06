@@ -46,7 +46,7 @@
                      <a class="nav-link" href="#feedback-section">Testimoni</a>
                   </li>
                   <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-                     <a href="<?= base_url('auth/daftar') ?>" role="button" class="btn btn-danger">Daftar</a>
+                     <a href="<?= base_url('auth/register') ?>" role="button" class="btn btn-danger">Daftar</a>
                      <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Login</button>
                   </li>
                </ul>

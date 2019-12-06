@@ -26,6 +26,13 @@
                <div class=" form-control-feedback text-danger"><?= form_error('email') ?></div>
             </div>
             <div class="form-group">
+               <label for="exampleSelect1">Daftar Sebagai</label>
+               <select name="role" class="form-control" id="role">
+                  <option value="2">Guru</option>
+                  <option value="3">Murid</option>
+               </select>
+            </div>
+            <div class="form-group">
                <label class="control-label">PASSWORD</label>
                <input name="password1" class="form-control" type="password" placeholder="Password">
                <div class=" form-control-feedback text-danger"><?= form_error('password1') ?></div>

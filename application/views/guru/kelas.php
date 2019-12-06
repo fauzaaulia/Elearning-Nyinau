@@ -1,8 +1,9 @@
 <div class="row">
    <div class="col-md-12">
+      <?= $this->session->flashdata('message'); ?>
       <div class="tile">
          <div class="tile-body">
-            <button data-toggle="modal" data-target="#tambahKelas" class="btn btn-primary float-left mb-3" type="button">Tambah Kelas</button>
+            <a href="<?= base_url('guru/addkelas') ?>" class="btn btn-primary float-left mb-3" role="button">Tambah Kelas</a>
             <div class="table-responsive">
                <table class="table table-hover table-bordered" id="sampleTable">
                   <thead>
@@ -17,18 +18,22 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <tr>
-                        <td>1</td>
-                        <td>System Architect</td>
-                        <td>2011/04/25</td>
-                        <td>Computer Science</td>
-                        <td>61</td>
-                        <td>600</td>
-                        <td>
-                           <a href="<?= base_url('guru/babmateri') ?>" role="button" class="btn btn-primary">Edit</a>
-                           <button class="btn btn-danger" type="button">Delete</button>
-                        </td>
-                     </tr>
+                     <?php $i = 1; ?>
+                     <?php foreach ($kelas as $k) : ?>
+                        <tr>
+                           <td><?= $i; ?></td>
+                           <td><?= $k['nama']; ?></td>
+                           <td><?= date('Y/m/d', $k['date_create']); ?></td>
+                           <td><?= $k['kategori']; ?></td>
+                           <td><?= $k['komment']; ?></td>
+                           <td><?= $k['point']; ?></td>
+                           <td>
+                              <a href="<?= base_url('guru/babmateri/') . $k['id'] ?>" role="button" class="btn btn-primary">Edit</a>
+                              <a href="<?= base_url('guru/deletekelas/') . $k['id'] ?>" class="btn btn-danger" role="button">Delete</a>
+                           </td>
+                        </tr>
+                        <?php $i++; ?>
+                     <?php endforeach ?>
                   </tbody>
                </table>
             </div>

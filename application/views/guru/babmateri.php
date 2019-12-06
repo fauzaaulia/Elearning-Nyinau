@@ -1,6 +1,7 @@
 <div class="col-md-8">
+   <?= $this->session->flashdata('message'); ?>
    <div class="tile">
-      <a href="<?= base_url('guru/addmateri') ?>" role="button" class="btn btn-primary float-right">Tambah Materi</a>
+      <a href="<?= base_url('guru/addmateri/') . $this->uri->segment('3') ?>" role="button" class="btn btn-primary float-right">Tambah Materi</a>
       <h3 class="tile-title">Bab Materi</h3>
       <table class="table table-hover">
          <thead>
@@ -12,33 +13,19 @@
             </tr>
          </thead>
          <tbody>
-            <tr>
-               <td>1</td>
-               <td>Arsitektur Computer</td>
-               <td>26/05/2019</td>
-               <td>
-                  <button class="btn btn-primary" type="button">Edit</button>
-                  <button class="btn btn-danger" type="button">Delete</button>
-               </td>
-            </tr>
-            <tr>
-               <td>2</td>
-               <td>Arsitektur Computer 2</td>
-               <td>26/05/2019</td>
-               <td>
-                  <button class="btn btn-primary" type="button">Edit</button>
-                  <button class="btn btn-danger" type="button">Delete</button>
-               </td>
-            </tr>
-            <tr>
-               <td>3</td>
-               <td>Arsitektur Compute 3</td>
-               <td>26/05/2019</td>
-               <td>
-                  <button class="btn btn-primary" type="button">Edit</button>
-                  <button class="btn btn-danger" type="button">Delete</button>
-               </td>
-            </tr>
+            <?php $i = 1; ?>
+            <?php foreach ($bab as $b) : ?>
+               <tr>
+                  <td><?= $i; ?></td>
+                  <td><?= $b['judul']; ?></td>
+                  <td><?= date('Y/m/d', $b['date_create']); ?></td>
+                  <td>
+                     <button class="btn btn-primary" type="button">Edit</button>
+                     <a href="<?= base_url('guru/deletemateri/' . $this->uri->segment('3') . '/') . $b['id']; ?>" class="btn btn-danger" role="button">Delete</a>
+                  </td>
+               </tr>
+               <?php $i++; ?>
+            <?php endforeach ?>
          </tbody>
       </table>
    </div>

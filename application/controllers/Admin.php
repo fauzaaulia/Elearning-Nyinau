@@ -6,17 +6,19 @@ class Admin extends CI_Controller
    public function __construct()
    {
       parent::__construct();
+      is_logged_in();
       $this->load->model('User_model');
    }
 
    public function index()
    {
-      $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-
+      $this->load->model('User_model', 'user');
+      $data['user'] = $this->user->getUserByID();
       $data['users'] = $this->User_model->getDataUser();
+      $data['totguru'] = $this->User_model->getTotalGuru();
+      $data['totmurid'] = $this->User_model->getTotalMurid();
 
       $data['title'] = 'Dashboard';
-      $data['dec'] = 'Admin';
 
       $this->load->view('templates/adm-header', $data);
       $this->load->view('templates/adm-sidebar', $data);
@@ -24,12 +26,13 @@ class Admin extends CI_Controller
       $this->load->view('templates/adm-footer');
    }
 
-   public function guru()
+   public function listguru()
    {
-      $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+      $this->load->model('User_model', 'user');
+      $data['user'] = $this->user->getUserByID();
+      $data['userguru'] = $this->user->getUserGuru();
 
-      $data['title'] = 'Kelas';
-      $data['dec'] = 'Admin';
+      $data['title'] = 'Guru';
 
       $this->load->view('templates/adm-header', $data);
       $this->load->view('templates/adm-sidebar', $data);
@@ -37,12 +40,14 @@ class Admin extends CI_Controller
       $this->load->view('templates/adm-footer');
    }
 
-   public function kelas()
+   public function listkelas()
    {
-      $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+      $this->load->model('User_model', 'user');
+      $this->load->model('Kelas_model', 'kelas');
+      $data['user'] = $this->user->getUserByID();
+      $data['kelas'] = $this->kelas->getAllKelas();
 
       $data['title'] = 'Kelas';
-      $data['dec'] = 'Admin';
 
       $this->load->view('templates/adm-header', $data);
       $this->load->view('templates/adm-sidebar', $data);
@@ -50,29 +55,24 @@ class Admin extends CI_Controller
       $this->load->view('templates/adm-footer');
    }
 
-   public function murid()
+   public function deletekelas($id)
    {
-      $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+      $this->db->delete('kelas', ['id' => $id]);
+      $this->session->set_flashdata('message', '<div class="bs-component"><div class="alert alert-dismissible alert-success"><strong>Well done!</strong> You successfully delete Kelas.</div></div>');
+      redirect('guru/kelas');
+   }
 
-      $data['title'] = 'Kelas';
-      $data['dec'] = 'Admin';
+   public function listmurid()
+   {
+      $this->load->model('User_model', 'user');
+      $data['user'] = $this->user->getUserByID();
+      $data['usermurid'] = $this->user->getUserMurid();
+
+      $data['title'] = 'Murid';
 
       $this->load->view('templates/adm-header', $data);
       $this->load->view('templates/adm-sidebar', $data);
       $this->load->view('admin/murid');
-      $this->load->view('templates/adm-footer');
-   }
-
-   public function profil()
-   {
-      $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-
-      $data['title'] = 'Kelas';
-      $data['dec'] = 'Admin';
-
-      $this->load->view('templates/adm-header', $data);
-      $this->load->view('templates/adm-sidebar', $data);
-      $this->load->view('admin/profil');
       $this->load->view('templates/adm-footer');
    }
 }
