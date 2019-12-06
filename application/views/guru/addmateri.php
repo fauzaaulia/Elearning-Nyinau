@@ -8,6 +8,10 @@
                <input class="form-control" name="judul" type="text">
             </div>
             <div class="form-group">
+               <label class="col-form-label" for="Link"><b>Link Video Youtube</b></label>
+               <input class="form-control" name="video" type="text">
+            </div>
+            <div class="form-group">
                <label for="exampleInputFile"><b>Image Cover</b></label>
                <input class="form-control-file" name="cover" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
             </div>

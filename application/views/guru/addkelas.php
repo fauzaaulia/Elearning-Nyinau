@@ -10,6 +10,11 @@
                   <div class=" form-control-feedback text-danger"><?= form_error('nama') ?></div>
                </div>
                <div class="form-group">
+                  <label class="control-label">Deskripsi</label>
+                  <input name="deskripsi" class="form-control" type="text" placeholder="Deskripsi Singkat">
+                  <div class=" form-control-feedback text-danger"><?= form_error('deskripsi') ?></div>
+               </div>
+               <div class="form-group">
                   <label for="exampleSelect1">Kategori</label>
                   <select name="kategori" class="form-control" id="exampleSelect1">
                      <option value="Desain">Desain</option>

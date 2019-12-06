@@ -44,6 +44,7 @@ class Guru extends CI_Controller
    public function addkelas()
    {
       $this->form_validation->set_rules('nama', 'Nama Kelas', 'required|trim');
+      $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim');
       $this->form_validation->set_rules('kategori', 'Kategori', 'required|trim');
 
       if ($this->form_validation->run() == false) {
@@ -61,6 +62,7 @@ class Guru extends CI_Controller
          $data = [
             'user_id' => $id,
             'nama' => htmlspecialchars($this->input->post('nama', true)),
+            'deskripsi' => htmlspecialchars($this->input->post('deskripsi', true)),
             'kategori' => htmlspecialchars($this->input->post('kategori', true)),
             'is_active' => 1,
             'date_create' => time()
@@ -125,6 +127,7 @@ class Guru extends CI_Controller
          $data = [
             'kelas_id' => htmlspecialchars($this->input->post('kelas_id', true)),
             'judul' => htmlspecialchars($this->input->post('judul', true)),
+            'link_video' => $this->input->post('video', true),
             'cover' => htmlspecialchars($this->input->post('cover', true)),
             'isi_materi' => $this->input->post('editor1'),
             'is_active' => 1,
